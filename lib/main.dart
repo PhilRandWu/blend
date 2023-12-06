@@ -46,7 +46,8 @@ class MyScaffold extends StatelessWidget {
           MyAppBar(
             title: Text(
               'Example title',
-              style: Theme.of(context) //
+              style: Theme
+                  .of(context) //
                   .primaryTextTheme
                   .titleLarge,
             ),
@@ -62,9 +63,66 @@ class MyScaffold extends StatelessWidget {
   }
 }
 
+
+class MyButton extends StatelessWidget {
+  const MyButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        print('MyButton was tapped!');
+      },
+      child: Container(
+        height: 50,
+        padding: const EdgeInsets.all(8),
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: Colors.lightGreen[500],
+        ),
+        child: const Center(
+          child: Text('Engage'),
+        ),
+      ),
+    );
+  }
+}
+
+class TutorialHome extends StatelessWidget {
+ const TutorialHome({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: const IconButton(
+          icon: Icon(Icons.menu),
+          tooltip: 'Navigation menu',
+          onPressed: null,
+        ),
+        title: const Text('Example title'),
+        actions: const [
+          IconButton(
+            icon: Icon(Icons.search),
+            tooltip: 'Search',
+            onPressed: null,
+          ),
+        ],
+      ),
+      body: const Center(
+        child: MyButton(),
+      ),
+    );
+  }
+}
+
 void main() {
-  runApp(const MaterialApp(
-    title: "My App",
-    home: SafeArea(child: MyScaffold()),
-  ));
+  runApp(
+      const MaterialApp(
+        title: "My App",
+        home: TutorialHome()
+      )
+
+  );
 }
